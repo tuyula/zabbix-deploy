@@ -17,4 +17,4 @@ sed -i 's/ServerActive=127.0.0.1/Server=zabbix-server.listenrobot.com/' /etc/zab
 cp zabbix_agentd.d /etc/zabbix/ -rf
 cp scripts /etc/zabbix/ -rf
 
-systemctl start zabbix-agent
+systemctl restart zabbix-agent
