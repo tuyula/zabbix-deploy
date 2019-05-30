@@ -30,5 +30,6 @@ sed -i 's/ServerActive=127.0.0.1//' /etc/zabbix/zabbix_agentd.conf
 
 cp zabbix_agentd.d /etc/zabbix/ -rf
 cp scripts /etc/zabbix/ -rf
+chown zabbix:zabbix /etc/zabbix/ -R
 
 systemctl restart zabbix-agent
