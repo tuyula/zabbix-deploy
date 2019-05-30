@@ -4,7 +4,7 @@
 pre_rpm=`rpm -qa|grep zabbix-agent`
 for item in $pre_rpm
 do
-    if [[ $item -ne "zabbix-agent-4.0.8-1.el7\.x86_64" ]];then
+    if [[ $item = "zabbix-agent-4.0.8-1.el7.x86_64" ]];then
         rpm -e $item
         yum clean all
     fi;
