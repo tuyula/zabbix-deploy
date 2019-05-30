@@ -31,5 +31,7 @@ sed -i 's/ServerActive=127.0.0.1//' /etc/zabbix/zabbix_agentd.conf
 cp zabbix_agentd.d /etc/zabbix/ -rf
 cp scripts /etc/zabbix/ -rf
 chown zabbix:zabbix /etc/zabbix/ -R
+rm /etc/zabbix/zabbix_agentd.d/userparameter_mysql.conf
+rm /etc/zabbix/zabbix_agentd.d/UserParameter.conf
 
 systemctl restart zabbix-agent
