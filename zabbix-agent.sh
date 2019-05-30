@@ -7,6 +7,8 @@ do
     rpm -e $item
 done
 
+yum erase zabbix-agent
+
 rpm -ivh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
 
 yum-config-manager --enable rhel-7-server-optional-rpms

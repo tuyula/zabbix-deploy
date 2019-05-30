@@ -1,5 +1,14 @@
 #!/bin/bash
 # red 7
+# delete pre rpm
+pre_rpm=`rpm -qa|grep zabbix`
+for item in $pre_rpm
+do
+    rpm -e $item
+done
+
+yum erase zabbix-agent
+
 rpm -ivh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
 
 yum-config-manager --enable rhel-7-server-optional-rpms
@@ -8,7 +17,6 @@ yum -y install zabbix-agent
 
 systemctl enable zabbix-agent
 
-yum erase zabbix-agent
 
 sed -i "s/Hostname=Zabbix server/Hostname=`dmidecode -s system-serial-number`/" /etc/zabbix/zabbix_agentd.conf
 
