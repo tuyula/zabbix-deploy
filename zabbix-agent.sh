@@ -32,6 +32,11 @@ sed -i 's/ServerActive=127.0.0.1//' /etc/zabbix/zabbix_agentd.conf
 cp zabbix_agentd.d /etc/zabbix/ -rf
 cp scripts /etc/zabbix/ -rf
 chown zabbix:zabbix /etc/zabbix/ -R
+chown zabbix:zabbix /var/log/zabbix/ -R
+
+# install request package
+pip install --upgrade pip
+pip install simplejson
 
 # delete some file
 if [[ -a /etc/zabbix/zabbix_agentd.d/userparameter_mysql.conf ]];then
