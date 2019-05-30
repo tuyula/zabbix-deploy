@@ -1,10 +1,12 @@
 #!/bin/bash
 # red 7
 # delete pre rpm
-pre_rpm=`rpm -qa|grep zabbix`
+pre_rpm=`rpm -qa|grep zabbix-agent`
 for item in $pre_rpm
 do
-    rpm -e $item
+    if [[ $item -ne "zabbix-agent-4.0.8-1.el7.x86_64" ]];then
+        rpm -e $item
+    fi;
 done
 
 yum erase zabbix-agent
