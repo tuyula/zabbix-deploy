@@ -30,7 +30,13 @@ sed -i 's/ServerActive=127.0.0.1/Server=zabbix-server.listenrobot.com/' /etc/zab
 cp zabbix_agentd.d /etc/zabbix/ -rf
 cp scripts /etc/zabbix/ -rf
 chown zabbix:zabbix /etc/zabbix/ -R
-rm /etc/zabbix/zabbix_agentd.d/userparameter_mysql.conf
-rm /etc/zabbix/zabbix_agentd.d/UserParameter.conf
+
+# delete some file
+if [[ -a /etc/zabbix/zabbix_agentd.d/userparameter_mysql.conf ]];then
+    rm /etc/zabbix/zabbix_agentd.d/userparameter_mysql.conf
+fi;
+if [[ -a /etc/zabbix/zabbix_agentd.d/UserParameter.conf ]];then
+    rm /etc/zabbix/zabbix_agentd.d/UserParameter.conf
+fi;
 
 systemctl restart zabbix-agent
