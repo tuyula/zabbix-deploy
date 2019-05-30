@@ -8,6 +8,8 @@ yum -y install zabbix-agent
 
 systemctl enable zabbix-agent
 
+yum erase zabbix-agent
+
 sed -i "s/Hostname=Zabbix server/Hostname=`dmidecode -s system-serial-number`/" /etc/zabbix/zabbix_agentd.conf
 
 sed -i 's/Server=127.0.0.1//' /etc/zabbix/zabbix_agentd.conf

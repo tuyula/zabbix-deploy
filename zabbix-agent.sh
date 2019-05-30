@@ -1,5 +1,12 @@
 #!/bin/bash
 # red 7
+# delete pre rpm
+pre_rpm=`rpm -qa|grep zabbix`
+for item in $pre_rpm
+do
+    rpm -e $item
+done
+
 rpm -ivh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
 
 yum-config-manager --enable rhel-7-server-optional-rpms
