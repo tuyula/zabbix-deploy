@@ -35,6 +35,7 @@ chown zabbix:zabbix /etc/zabbix/ -R
 chown zabbix:zabbix /var/log/zabbix/ -R
 
 # install request package
+pip install --upgrade setuptools
 pip install --upgrade pip
 pip install simplejson
 
