@@ -6,6 +6,7 @@ for item in $pre_rpm
 do
     if [[ $item -ne "zabbix-agent-4.0.8-1.el7.x86_64" ]];then
         rpm -e $item
+        yum clean all
     fi;
 done
 
@@ -13,8 +14,6 @@ yum erase zabbix-agent
 
 rm -rf /etc/zabbix/scripts
 rm -rf /etc/zabbix/scripts/zabbix_agentd.d
-
-yum clean all
 
 rpm -ivh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
 
