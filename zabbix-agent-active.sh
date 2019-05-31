@@ -1,13 +1,16 @@
 #!/bin/bash
 # red 7
 # delete pre rpm
-pre_rpm=`rpm -qa|grep zabbix`
+pre_rpm=`rpm -qa|grep zabbix-agent`
 for item in $pre_rpm
 do
-    rpm -e $item
+    if [[ $item = "zabbix-agent-4.0.8-1.el7.x86_64" ]];then
+        rpm -e $item
+        yum clean all
+    fi;
 done
 
-yum erase zabbix-agent
+yum erase -y zabbix-agent
 
 rm -rf /etc/zabbix/scripts
 rm -rf /etc/zabbix/scripts/zabbix_agentd.d
@@ -30,6 +33,12 @@ sed -i 's/ServerActive=127.0.0.1/Server=zabbix-server.listenrobot.com/' /etc/zab
 cp zabbix_agentd.d /etc/zabbix/ -rf
 cp scripts /etc/zabbix/ -rf
 chown zabbix:zabbix /etc/zabbix/ -R
+chown zabbix:zabbix /var/log/zabbix/ -R
+
+# install request package
+pip install --upgrade setuptools
+pip install --upgrade pip
+pip install simplejson
 
 # delete some file
 if [[ -a /etc/zabbix/zabbix_agentd.d/userparameter_mysql.conf ]];then
