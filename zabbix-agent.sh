@@ -34,6 +34,10 @@ cp scripts /etc/zabbix/ -rf
 chown zabbix:zabbix /etc/zabbix/ -R
 chown zabbix:zabbix /var/log/zabbix/ -R
 
+# install env
+yum -y install epel-release
+yum -y install python-pip
+
 # install request package
 pip install --upgrade setuptools
 pip install --upgrade pip
