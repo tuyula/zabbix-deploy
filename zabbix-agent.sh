@@ -23,6 +23,15 @@ else
     echo "Dont find Linux Version info:" `cat /etc/redhat-release`
 fi
 
+if grep 10\.28\.25\.25 /etc/resolv.conf > /dev/null;then
+    echo "nameserver 10.28.25.25" >> /etc/resolv.conf
+fi
+
+if grep 10\.28\.12\.12 /etc/resolv.conf > /dev/null;then
+    echo "nameserver 10.28.12.12" >> /etc/resolv.conf
+fi
+
+
 yum-config-manager --enable rhel-7-server-optional-rpms
 
 yum -y install zabbix-agent
