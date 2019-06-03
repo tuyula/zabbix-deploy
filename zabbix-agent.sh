@@ -72,7 +72,7 @@ fi;
 if cat /etc/redhat-release|grep 7\. > /dev/null;then
     systemctl restart zabbix-agent
 elif cat /etc/redhat-release|grep 6\. > /dev/null;then
-    service zabbix-agent start
+    service zabbix-agent restart
 else
     echo "Dont find Linux Version info:" `cat /etc/redhat-release`
 fi
