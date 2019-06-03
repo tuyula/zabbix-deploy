@@ -56,7 +56,12 @@ yum -y install python-pip
 # install request package
 pip install --upgrade setuptools
 pip install --upgrade pip
-pip install simplejson
+
+if pip -V|grep 2.6 > /dev/null;then
+    echo "The python version is 2.6"
+else
+    pip install simplejson
+fi
 
 # delete some file
 if [[ -a /etc/zabbix/zabbix_agentd.d/userparameter_mysql.conf ]];then
