@@ -15,7 +15,13 @@ yum erase -y zabbix-agent
 rm -rf /etc/zabbix/scripts
 rm -rf /etc/zabbix/scripts/zabbix_agentd.d
 
-rpm -ivh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
+if cat /etc/redhat-release|grep 7\. > /dev/null;then
+    rpm -ivh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
+elif cat /etc/redhat-release|grep 6\. > /dev/null;then
+    rpm -ivh https://repo.zabbix.com/zabbix/4.0/rhel/6/x86_64/zabbix-agent-4.0.1-1.el6.x86_64.rpm
+else
+    echo "Dont find Linux Version info:" `cat /etc/redhat-release`
+fi
 
 yum-config-manager --enable rhel-7-server-optional-rpms
 
