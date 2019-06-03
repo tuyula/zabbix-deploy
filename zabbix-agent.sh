@@ -34,7 +34,7 @@ fi
 
 yum-config-manager --enable rhel-7-server-optional-rpms
 
-yum -y install zabbix-agent
+yum -y install zabbix-agent, dmidecode
 
 systemctl enable zabbix-agent
 
