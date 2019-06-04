@@ -2,7 +2,7 @@ FROM centos:latest
 MAINTAINER "taoyu"
 
 # 3. 安装环境
-COPY ./requirements.txt /tmp
+COPY ../requirements.txt /tmp
 
 RUN set -ex \
     && yum -y install epel-release \
