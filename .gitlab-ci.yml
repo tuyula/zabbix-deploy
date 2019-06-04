@@ -27,7 +27,7 @@ build:
 test_sucess:
   stage: test
   script:
-  - docker run --rm harbor.listenrobot.com/ops/zabbix:$CI_COMMIT_REF_NAME python /usr/lib/zabbix/alertscripts/dingrobot.py "build zabbix-deploy success " $CI_COMMIT_REF_NAME
+  - docker run --rm harbor.listenrobot.com/ops/zabbix:$CI_COMMIT_REF_NAME python /usr/lib/zabbix/alertscripts/dingrobot.py "build zabbix-deploy success $CI_COMMIT_REF_NAME"
   - docker rmi harbor.listenrobot.com/ops/zabbix:$CI_COMMIT_REF_NAME
   only:
     - tags
@@ -35,6 +35,6 @@ test_sucess:
 test_fails:
   stage: test
   script:
-  - docker run --rm harbor.listenrobot.com/ops/zabbix:1.0.2 python /usr/lib/zabbix/alertscripts/dingrobot.py "build zabbix-deploy Fails {}" $CI_COMMIT_REF_NAME
+  - docker run --rm harbor.listenrobot.com/ops/zabbix:1.0.2 python /usr/lib/zabbix/alertscripts/dingrobot.py "build zabbix-deploy Fails $CI_COMMIT_REF_NAME"
   - docker rmi harbor.listenrobot.com/ops/zabbix:1.0.2
   when: on_failure
