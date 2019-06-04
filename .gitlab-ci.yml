@@ -1,0 +1,25 @@
+stages:
+- base
+- build
+- test
+
+image: docker:dind
+
+base:
+  script:
+  - docker build -t harbor.listenrobot.com/ops/centos:zabbix ./base/
+  - docker login --username=ops -p KYn16v9b  harbor.listenrobot.com
+  - docker push harbor.listenrobot.com/ops/centos:zabbix
+  - docker rmi harbor.listenrobot.com/ops/centos:zabbix
+  only:
+    changes:
+      - base/Dockerfile
+
+build:
+  script:
+  - docker build -t harbor.listenrobot.com/ops/zabbix:$CI_COMMIT_REF_NAME .
+  - docker login --username=ops -p KYn16v9b  harbor.listenrobot.com
+  - docker push harbor.listenrobot.com/ops/zabbix:$CI_COMMIT_REF_NAME
+  - docker rmi harbor.listenrobot.com/ops/zabbix:$CI_COMMIT_REF_NAME
+  only:
+    - tags
