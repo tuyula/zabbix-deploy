@@ -19,6 +19,20 @@ build:
   - docker build -t harbor.listenrobot.com/ops/zabbix:$CI_COMMIT_REF_NAME .
   - docker login --username=ops -p KYn16v9b  harbor.listenrobot.com
   - docker push harbor.listenrobot.com/ops/zabbix:$CI_COMMIT_REF_NAME
+  only:
+    - tags
+
+test_sucess:
+  stage: test
+  script:
+  - docker run --rm harbor.listenrobot.com/ops/zabbix:$CI_COMMIT_REF_NAME python /usr/lib/zabbix/alertscripts/dingrobot.py "build success"
   - docker rmi harbor.listenrobot.com/ops/zabbix:$CI_COMMIT_REF_NAME
   only:
     - tags
+
+test_fails:
+  stage: test
+  script:
+  - docker run --rm harbor.listenrobot.com/ops/zabbix:1.0.2 python /usr/lib/zabbix/alertscripts/dingrobot.py "build Fails"
+  - docker rmi harbor.listenrobot.com/ops/zabbix:1.0.2
+  when: on_failure
