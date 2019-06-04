@@ -6,6 +6,7 @@ stages:
 image: docker:dind
 
 base:
+  stage: base
   script:
   - docker build -t harbor.listenrobot.com/ops/centos:zabbix ./base/
   - docker login --username=ops -p KYn16v9b  harbor.listenrobot.com
@@ -15,6 +16,7 @@ base:
     - /base/
 
 build:
+  stage: build
   script:
   - docker build -t harbor.listenrobot.com/ops/zabbix:$CI_COMMIT_REF_NAME .
   - docker login --username=ops -p KYn16v9b  harbor.listenrobot.com
