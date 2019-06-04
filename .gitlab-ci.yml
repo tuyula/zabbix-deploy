@@ -12,8 +12,7 @@ base:
   - docker push harbor.listenrobot.com/ops/centos:zabbix
   - docker rmi harbor.listenrobot.com/ops/centos:zabbix
   only:
-    changes:
-      - base/Dockerfile
+    - /base/
 
 build:
   script:
