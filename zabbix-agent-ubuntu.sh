@@ -52,11 +52,4 @@ if [[ -a /etc/zabbix/zabbix_agentd.d/UserParameter.conf ]];then
     rm /etc/zabbix/zabbix_agentd.d/UserParameter.conf
 fi;
 
-
-if cat /etc/redhat-release|grep 7\. > /dev/null;then
-    systemctl restart zabbix-agent
-elif cat /etc/redhat-release|grep 6\. > /dev/null;then
-    service zabbix-agent restart
-else
-    echo "Dont find Linux Version info:" `cat /etc/redhat-release`
-fi
+systemctl restart zabbix-agent
