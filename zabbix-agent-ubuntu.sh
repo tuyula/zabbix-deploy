@@ -19,19 +19,19 @@ if ! grep 10\.28\.12\.12 /etc/resolv.conf > /dev/null;then
 fi
 
 ##### start install agent #####
-systemctl enable zabbix-agent
-mv zabbix_agentd.conf /etc/zabbix/
+mv /tmp/zabbix-deploy/zabbix_agentd.conf /etc/zabbix/
 
 sed -i "s/Hostname=Zabbix server/Hostname=`dmidecode -s system-serial-number`/" /etc/zabbix/zabbix_agentd.conf
 sed -i 's/Server=127.0.0.1/Server=zabbix-passive.listenrobot.com/' /etc/zabbix/zabbix_agentd.conf
 sed -i 's/ServerActive=127.0.0.1//' /etc/zabbix/zabbix_agentd.conf
 
-cp zabbix_agentd.d /etc/zabbix/ -rf
-cp scripts /etc/zabbix/ -rf
+cp /tmp/zabbix-deploy/zabbix_agentd.d /etc/zabbix/ -rf
+cp /tmp/zabbix-deploy/scripts /etc/zabbix/ -rf
 chown zabbix:zabbix /etc/zabbix/ -R
 chown zabbix:zabbix /var/log/zabbix/ -R
 
 ##### install env #####
+systemctl enable zabbix-agent
 apt -y install python-pip
 sed -i 's/pip/pip._internal/' /usr/bin/pip
 
