@@ -20,6 +20,7 @@ fi
 
 ##### start install agent #####
 systemctl enable zabbix-agent
+mv zabbix_agentd.conf /etc/zabbix/
 
 sed -i "s/Hostname=Zabbix server/Hostname=`dmidecode -s system-serial-number`/" /etc/zabbix/zabbix_agentd.conf
 sed -i 's/Server=127.0.0.1/Server=zabbix-passive.listenrobot.com/' /etc/zabbix/zabbix_agentd.conf
