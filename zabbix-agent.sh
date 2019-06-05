@@ -34,7 +34,8 @@ fi
 
 ##### start install agent #####
 yum-config-manager --enable rhel-7-server-optional-rpms
-yum -y install zabbix-agent, dmidecode
+yum install zabbix-agent -y
+yum install dmidecode -y
 systemctl enable zabbix-agent
 
 sed -i "s/Hostname=Zabbix server/Hostname=`dmidecode -s system-serial-number`/" /etc/zabbix/zabbix_agentd.conf
