@@ -32,6 +32,7 @@ chown zabbix:zabbix /var/log/zabbix/ -R
 
 ##### install env #####
 apt -y install python-pip
+sed -i 's/pip/pip._internal/' /usr/bin/pip
 
 ##### install request package #####
 pip install --upgrade setuptools
