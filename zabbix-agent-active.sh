@@ -30,6 +30,8 @@ sed -i 's/Server=127.0.0.1//' /etc/zabbix/zabbix_agentd.conf
 
 sed -i 's/ServerActive=127.0.0.1/Server=zabbix-server.listenrobot.com/' /etc/zabbix/zabbix_agentd.conf
 
+sed 's/# AllowRoot=0/AllowRoot=1/' /etc/zabbix/zabbix_agentd.conf
+
 cp zabbix_agentd.d /etc/zabbix/ -rf
 cp scripts /etc/zabbix/ -rf
 chown zabbix:zabbix /etc/zabbix/ -R
