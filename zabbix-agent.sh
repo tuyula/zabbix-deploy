@@ -41,6 +41,7 @@ systemctl enable zabbix-agent
 sed -i "s/Hostname=Zabbix server/Hostname=`dmidecode -s system-serial-number`/" /etc/zabbix/zabbix_agentd.conf
 sed -i 's/Server=127.0.0.1/Server=zabbix-passive.listenrobot.com/' /etc/zabbix/zabbix_agentd.conf
 sed -i 's/ServerActive=127.0.0.1//' /etc/zabbix/zabbix_agentd.conf
+sed -i 's/# AllowRoot=0/AllowRoot=1/' /etc/zabbix/zabbix_agentd.conf
 
 cp zabbix_agentd.d /etc/zabbix/ -rf
 cp scripts /etc/zabbix/ -rf
